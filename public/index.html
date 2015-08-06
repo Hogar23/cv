@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Petar Lazarević</title>
+  <meta charset="UTF-8">
+<meta name="description" content="Licni veb sajt">
+<meta name="keywords" content="HTML,CSS,PHP,JavaScript">
+<meta name="author" content="Petar Lazarevic">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./css/bootstrap.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+<script type="text/javascript">
+
+</script>
+  <div class="row menu">
+    <img class="logo" src="./img/petar.png" >
+          <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+           
+          </div>
+          <div id="navbar" class="navbar-collapse collapse colorHover">
+            <ul class="nav navbar-nav text-center">
+              <li class="myHover">
+                
+                <a href="#/">Home</a>
+                <span class='menuStyle'></span>
+              </li>
+              <li class="myHover">
+                
+                <a href="#/projects">Projects</a>
+                <span class='menuStyle'></span>
+              </li>
+              <li class="myHover">
+              
+                <a href="#/aboutme">CURRICULUM VITAE</a>
+                <span class='menuStyle'></span>
+              </li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+       
+        
+            
+  </div>
+<span class='pageStyle'></span>
+  <div class="row centar">
+
+    <div class="container mystyle">
+
+      
+    </div> 
+            
+  </div>
+<span class='pageStyle'></span> 
+
+    <div class="myfooter"></div>          
+
+
+  <script type="text/template" id="home-template">
+  <div class='content'>
+    <% _.each(page, function(page) { %>
+<%= page.get('description') %>
+<input type="hidden" id='editingID' value=<%= page.get('id_page') %> >
+ </div>
+
+
+    <% }); %>
+
+
+
+<div class='editing'></div>
+  </script>
+
+    <script type="text/template" id="about-template">
+      <div class='content'>
+          <% _.each(page, function(page) { %>
+      <%= page.get('description') %>
+      <input type="hidden" id='editingID' value=<%= page.get('id_page') %> >
+       </div>
+
+
+    <% }); %>
+
+  
+
+<div class='editing'></div>
+  </script>
+ 
+
+  <script type="text/template" id="projects-template">
+  <div class="row ">
+
+ 
+    <% _.each(projects, function(pr) { %>
+      <a href="#/projects/<%= pr.get('id_project') %>"> 
+        <div class='col-md-6 text-center'>
+
+          <div class="text-center project">
+            <h3><%= pr.get('name') %></h3>
+            
+               <img src="./img/projekti/<%= pr.get('picture') %>">
+            
+          </div>
+        </div>
+      </a>   
+
+    <% }); %>
+
+
+
+  </script>
+<script type="text/template" id="project-template">
+<h1 class="text-center"><%- output.name ? output.name : "" %></h1>
+ <input type="hidden" id='editingID' value=<%- output.uid ? output.uid : "" %> >
+<br> 
+<div id="descriptionRes" class='content'>
+  <%= output.description %>
+</div>
+<div class='editing'></div>
+</script>
+
+<script type="text/template" id="login-template">
+
+
+      <form class="form-signin FormL">
+        <h2 class="form-signin-heading">Sign in</h2>
+        <hr class="soften">
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="username" id="inputUsername" class="form-control" placeholder="Username" required="" autofocus="" >
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="" >
+        <p class='redP'></p>
+
+    <p class="btn btn-primary login"> LOG IN </p>
+
+      </form>
+  </script>
+
+
+<script type="text/template" id="edit-home">
+<div class="container ">
+  <h2>Edit home page:</h2>
+  <form role="form" class='padd'>
+    <div class="form-group">
+      <textarea class="form-control" rows="10" id="editing"><%= edit.description ? edit.description : "empty" %></textarea>
+    </div>
+      <p class="btn btn-primary editHome"> Save </p>
+
+  </form>
+</script>
+
+
+<script type="text/template" id="edit-project">
+<div class="container ">
+  <h2>Edit project page:</h2>
+  <form role="form" class='padd'>
+    <div class="form-group">
+      <textarea class="form-control" rows="10" id="editing"><%= edit.description ? edit.description : "empty" %></textarea>
+    </div>
+      <p class="btn btn-primary editProject"> Save </p>
+
+  </form>
+</script>
+
+<script type="text/template" id="edit-about">
+<div class="container ">
+  <h2>Edit AboutMe page:</h2>
+  <form role="form" class='padd'>
+    <div class="form-group">
+      <textarea class="form-control" rows="10" id="editing"><%= edit.description ? edit.description : "empty" %></textarea>
+    </div>
+      <p class="btn btn-primary editAbout"> Save </p>
+
+  </form>
+</script>
+
+<script type="text/template" id="add-project">
+<div class="container ">
+  <h2>Add project:</h2>
+  <form role="form" class='padd'>
+    <div class="form-group">
+      <textarea class="form-control" rows="10" id="editing"><%= edit.description ? edit.description : "empty" %></textarea>
+    </div>
+      <p class="btn btn-primary editProject"> Save </p>
+
+  </form>
+</script>
+
+
+
+  <script type="text/javascript" src="./js/1.11.2.js"></script>
+  <script type="text/javascript" src="./js/Migrate1.2.1.js"></script>
+
+  <script type="text/javascript" src="./js/bootstrap.js"></script>
+  <script src="./js/underscore/underscore.js"></script>
+  <script src="./js/Backbone.js 1.1.2.js"></script>
+  <script type="text/javascript" src="./js/myscript.js"></script>
+
+
+
+    <script type="text/javascript">
+      var colors = ["#0066FF", "#FF0000", "#009900", "#FF6600", "#FF00FF", "#6600FF", "#FFFF00", "#993366", "#0099CC", "#669999", "#00FF99", "#9999FF"];
+      function randBr(min, max) {
+          return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+
+     $('#navbar li').each(function(){
+        $(this).on('mouseover', function(){
+
+          var color = colors[randBr(0,11)];
+         
+          $(this).find('.menuStyle').css({'background-color':color});
+
+         // $(this).css({'text-shadow':'0px 0px 5px '+color});
+
+          
+
+        });
+     })
+
+      
+        $("#navbar li").on('click', function(){ 
+         
+          
+            var color = $( this ).find('.menuStyle').css( "background-color" );
+
+            $('.pageStyle').css({'background-color':color});
+
+        
+            
+              
+        });
+     
+
+    function htmlEncode(value){
+
+//return $(this).html(value)
+
+ 
+  //return $('<div/>').html(value.toString()).text();
+}
+
+
+
+
+
+
+    </script>
+</body>
+</html>
